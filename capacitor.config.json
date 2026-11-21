@@ -1,0 +1,8 @@
+{
+  "appId": "in.pnvtraders.manager",
+  "appName": "PNV Manager",
+  "webDir": "dist",
+  "server": {
+    "androidScheme": "https"
+  }
+}
