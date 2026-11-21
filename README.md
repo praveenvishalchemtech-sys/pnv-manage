@@ -1,11 +1,30 @@
-# PNV Manager – Cloud edition
+# PNV Manager — Local Storage Edition
 
-React + Vite + Firebase Authentication + Firestore real-time shop management.
+Mobile-friendly management-only PWA for PNV TRADERS, covering Dharga and Muneeshwar Nagar shops.
 
-**Start:** `npm install`, copy `.env.example` to `.env`, fill in your Firebase web app config, then `npm run dev`. See [CLOUD_SETUP.md](CLOUD_SETUP.md).
+## Run in GitHub Codespaces
 
-**Security:** Deploy `firestore.rules` in Firebase Console before using the app. Never commit secrets or a service-account key. The public Firebase web config is not a secret, but rules are essential.
+```bash
+git pull origin main
+npm install
+npm run dev
+```
 
-**Manager:** View both shops and assign staff profiles. **Staff:** Read/write only their assigned shop (except products are manager-maintained). Manual customer billing continues.
+Open forwarded port **5173** in your browser.
 
-**Important:** This is an initial cloud implementation, not a production-certified POS or accounting system. Stock quantities and duplicate closing checks are UI-side and can race under concurrent submissions; add Firestore transactions, server-side validation, audit trails, and backup/restore before production use. Staff can record attendance for shop colleagues; this is not payroll-grade verification. Net sales/expenses dashboard totals are all-time. The app does not yet offer automatic offline support.
+## Features
+
+- Both shops in one interface, with shop selector
+- Daily sales closings and cash reconciliation
+- Product catalog and inventory movements
+- Expenses and staff attendance
+- JSON backups and CSV exports
+- Mobile-friendly responsive interface
+
+## Important data safety limitations
+
+Records are saved in the **current browser's localStorage**, not on GitHub or Firebase. Different devices and browsers do **not** share data. Clearing site data, changing the preview URL/origin, private browsing, or losing the device can erase or isolate records. Export JSON backups frequently from the **Backup** tab, and keep the backup somewhere safe. Import backups on another device if you need to transfer records.
+
+There is **no authentication, no staff access control, no automatic synchronization, and no server backup**. Don't share the app with untrusted users or rely on it as the only copy of critical shop records. This edition is intended for a single trusted manager device or testing. Billing remains manual.
+
+Firebase files are retained in the repository for possible future use but are **not imported by the running local app**.
