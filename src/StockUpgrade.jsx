@@ -61,7 +61,8 @@ export default function StockUpgrade({data,setData,shop,tab}){
  {importError&&<p role="alert" className="warning">{importError}</p>}
  {preview&&<div className="notice"><div><b>{preview.list.length} products found in {preview.sheet}</b><p>{preview.invalid.length} invalid balances; {preview.duplicates.length} duplicate product names.</p><p>Sample: {preview.list.slice(0,5).map(x=>x.name+' ('+x.balance+')').join(', ')}</p><button className="primary" disabled={!!(preview.invalid.length||preview.duplicates.length)} onClick={importProducts}>Confirm product import</button></div></div>}
  </>}
- {tab==='Stock'&&<><h2>Record a transaction</h2><form className="entry" onSubmit={transact}>
+ {tab==='Stock'&&<><h2>Available Stock</h2><p className="muted">All products and their current balances. Use Update Sales in the menu to deduct each sale.</p><div className="tablewrap"><table><thead><tr><th>Product name</th><th>Shop</th><th>Available stock</th><th>Status</th></tr></thead><tbody>{productRows.slice().sort((a,b)=>a.name.localeCompare(b.name)).map(p=><tr key={p.id}><td><b>{p.name}</b></td><td>{p.shop}</td><td><b>{p.balance} {p.unit||'pcs'}</b></td><td>{p.balance<=number(p.reorder)?'Low stock':'OK'}</td></tr>)}</tbody></table></div></>}
+ {tab==='Stock'&&<><h2>Purchases, transfers & adjustments</h2><form className="entry" onSubmit={transact}>
  <label>Product<select required value={product} onChange={e=>{setProduct(e.target.value);setTo('')}}><option value="">Select product</option>{products.map(p=><option key={p.id} value={p.id}>{p.shop} · {p.name} · {balances.get(p.id)||0} available</option>)}</select></label>
  <label>Action<select value={mode} onChange={e=>setMode(e.target.value)}>{['Sale','Purchase','Transfer','Damage','Return'].map(x=><option key={x}>{x}</option>)}</select></label>
  <label>Quantity<input type="number" min="1" step="1" required value={qty} onChange={e=>setQty(e.target.value)}/></label>
