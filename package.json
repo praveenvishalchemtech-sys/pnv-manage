@@ -39,21 +39,12 @@
       "electron/**/*",
       "package.json"
     ],
-    "asar": true,
     "win": {
-      "target": [
-        {
-          "target": "nsis",
-          "arch": [
-            "x64"
-          ]
-        }
-      ]
+      "target": "nsis"
     },
     "nsis": {
       "oneClick": false,
-      "allowToChangeInstallationDirectory": true,
-      "artifactName": "PNV-Manager-Pro-Windows-${version}-Setup.exe"
+      "artifactName": "PNV-Manager-Pro-Windows-Setup.exe"
     }
   }
 }
